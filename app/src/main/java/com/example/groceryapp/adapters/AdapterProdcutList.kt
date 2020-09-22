@@ -21,6 +21,7 @@ class AdapterProductList(var mContext: Context):RecyclerView.Adapter<AdapterProd
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         fun bind(product:Product){
             itemView.text_view_name.text = product.productName
+            itemView.text_view_price.text = product.price.toString()
             Picasso.get()
                 .load(Config.IMAGE_URL + product.image)
                 .into(itemView.image_view)

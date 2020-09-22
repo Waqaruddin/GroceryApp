@@ -2,7 +2,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
-    android:background="#ccc"
     app:cardCornerRadius="15dp"
     app:cardElevation="15dp"
     xmlns:android="http://schemas.android.com/apk/res/android">

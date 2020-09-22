@@ -16,6 +16,20 @@
         android:textSize="25dp"
         android:textStyle="bold"
         android:textColor="#000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/text_view_name"
+        android:layout_toRightOf="@id/image_view"
+        android:textColor="#000"
+        android:id="@+id/text_view_price"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dcdcdc"
+        android:layout_below="@id/image_view"/>
 
 
 
