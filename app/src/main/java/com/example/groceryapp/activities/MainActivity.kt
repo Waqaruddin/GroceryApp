@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
              R.id.action_profile -> Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT).show()
              R.id.action_setting -> Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT).show()
              R.id.action_logout -> {sessionManager.logout()
-                 startActivity(Intent(applicationContext, WelcomeActivity::class.java))}
+                 startActivity(Intent(applicationContext, LoginActivity::class.java))}
 
 
          }
