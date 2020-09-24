@@ -54,7 +54,6 @@ class AddAddressActivity : AppCompatActivity() {
                 }
             )
             Volley.newRequestQueue(this).add(request)
-            //startActivity(Intent(this, AddressActivity::class.java))
             finish()
 
         }

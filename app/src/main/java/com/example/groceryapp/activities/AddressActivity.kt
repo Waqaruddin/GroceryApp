@@ -41,6 +41,7 @@ class AddressActivity : AppCompatActivity() {
     private fun init() {
         button_add.setOnClickListener {
             startActivity(Intent(this, AddAddressActivity::class.java))
+            finish()
         }
 
         getData()

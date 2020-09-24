@@ -3,7 +3,7 @@ package com.example.groceryapp.helpers
 import android.content.Context
 import com.example.groceryapp.models.User
 
-class SessionManager(var mContext: Context){
+class SessionManager(mContext: Context){
     private val FILE_NAME = "Registered_users"
     private val KEY_FIRST_NAME = "firstName"
     private val KEY_TOKEN = "token"

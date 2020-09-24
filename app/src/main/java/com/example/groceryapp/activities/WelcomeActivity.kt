@@ -12,25 +12,18 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-     init()
-
-
+        init()
     }
 
     private fun init() {
-//        button_register.setOnClickListener {
-//            startActivity(Intent(this, RegisterActivity::class.java))
-//        }
+        button_register.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
         button_login.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-        var sessionManager = SessionManager(this)
-        if(sessionManager.isLoggedIn()){
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
 
-        //startActivity(Intent(this, LoginActivity::class.java))
     }
 
 

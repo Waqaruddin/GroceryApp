@@ -13,8 +13,11 @@ class AdapterAddress(var mContext:Context , var mList:ArrayList<MyAddress>):Recy
 
     inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         fun bind(address:MyAddress){
+            itemView.text_view_pincode.text = address.pincode.toString()
             itemView.text_view_street.text = address.streetName
-            itemView.text_view_city.text = address.streetName
+            itemView.text_view_city.text = address.city
+            itemView.text_view_house.text = address.houseNo
+            itemView.text_view_type.text = address.type
         }
 
     }
