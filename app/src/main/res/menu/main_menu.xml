@@ -17,4 +17,9 @@
         android:id="@+id/action_cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="Cart"/>
+
+    <item
+        app:showAsAction="never"
+        android:id="@+id/action_logout"
+        android:title="Logout"/>
 </menu>

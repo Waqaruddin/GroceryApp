@@ -16,6 +16,7 @@ import com.example.groceryapp.R
 import com.example.groceryapp.adapters.AdapterCategory
 import com.example.groceryapp.app.Config
 import com.example.groceryapp.app.Endpoints
+import com.example.groceryapp.helpers.SessionManager
 import com.example.groceryapp.models.Category
 import com.example.groceryapp.models.CategoryResult
 import com.google.gson.Gson
@@ -24,11 +25,13 @@ import kotlinx.android.synthetic.main.app_bar.*
 import org.json.JSONArray
 
 class MainActivity : AppCompatActivity() {
+    lateinit var sessionManager:SessionManager
     var mList:ArrayList<Category> = ArrayList()
     lateinit var adapterCategory:AdapterCategory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        sessionManager = SessionManager(this)
 
         init()
     }
@@ -57,6 +60,8 @@ class MainActivity : AppCompatActivity() {
             R.id.action_cart -> startActivity(Intent(this, CartActivity::class.java))
              R.id.action_profile -> Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT).show()
              R.id.action_setting -> Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT).show()
+             R.id.action_logout -> {sessionManager.logout()
+                 startActivity(Intent(applicationContext, WelcomeActivity::class.java))}
 
 
          }
@@ -64,18 +69,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getData() {
-        val url =  Endpoints.getCategory()
-        var requestQueue = Volley.newRequestQueue(this)
         var request = StringRequest(
             Request.Method.GET,
-            url,
+            Endpoints.getCategory(),
             {
-                progress_bar.visibility = View.GONE
                 var gson = Gson()
                 var categoryResult = gson.fromJson(it, CategoryResult::class.java)
                // Log.d("abc", categoryResult.data[0].catName)
                 mList.addAll(categoryResult.data)
                 adapterCategory.setData(mList)
+                progress_bar.visibility = View.GONE
+
             },
             {
                 Toast.makeText(applicationContext, "Error", Toast.LENGTH_SHORT).show()
@@ -83,6 +87,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         )
-        requestQueue.add(request)
+        Volley.newRequestQueue(this).add(request)
     }
 }

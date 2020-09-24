@@ -35,19 +35,18 @@ class LoginActivity : AppCompatActivity() {
             params["password"] = password
 
             var jsonObject = JSONObject(params as Map<*, *>)
-            var url = Endpoints.getLogin()
-
             var request = JsonObjectRequest(
                 Request.Method.POST,
-                url,
+                Endpoints.getLogin(),
                 jsonObject,
                 {
                    // Toast.makeText(applicationContext, "Login successful", Toast.LENGTH_SHORT).show()
                     val gson = Gson()
                     var loginResponse = gson.fromJson(it.toString(), LoginResponse::class.java)
                     sessionManager.saveUserInfo(loginResponse.user)
+                    sessionManager.saveUserLogin(loginResponse.token!!)
 
-                    //startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                 },
                 {
                     Toast.makeText(applicationContext, "Incorrect email or password", Toast.LENGTH_SHORT).show()
@@ -56,7 +55,6 @@ class LoginActivity : AppCompatActivity() {
             )
             Volley.newRequestQueue(this).add(request)
 
-            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 

@@ -4,12 +4,13 @@ class Endpoints {
 
     companion object {
 
-        const val URL_LOGIN = "auth/login"
-        const val URL_REGISTER = "auth/register"
-        const val URL_CATEGORY = "category"
-        const val URL_SUB_CATEGORY = "subcategory"
-        const val URL_PRODUCT_BY_SUB = "products/sub"
-        const val URL_PRODUCT = "product"
+        private const val URL_LOGIN = "auth/login"
+        private const val URL_REGISTER = "auth/register"
+        private const val URL_CATEGORY = "category"
+        private const val URL_SUB_CATEGORY = "subcategory"
+        private const val URL_PRODUCT_BY_SUB = "products/sub"
+        private const val URL_PRODUCT = "product"
+        private const val URL_ADDRESS = "address"
 
         fun getRegister():String{
             return Config.BASE_URL + URL_REGISTER
@@ -39,6 +40,13 @@ class Endpoints {
 
         fun getProductByProductId(productId:String?):String{
             return "${Config.BASE_URL + URL_PRODUCT}/$productId"
+        }
+
+        fun saveAddress():String{
+            return Config.BASE_URL + URL_ADDRESS
+        }
+        fun getAddress(userId:String):String{
+            return Config.BASE_URL + URL_ADDRESS + "/" + userId
         }
 
 

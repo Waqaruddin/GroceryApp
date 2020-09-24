@@ -1,5 +1,6 @@
 package com.example.groceryapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +32,10 @@ class CartActivity : AppCompatActivity() {
         text_view_total.text = totals.total.toString()
         text_view_discount.text = totals.discount.toString()
         text_view_subtotal.text = totals.subtotal.toString()
+
+        button_checkout.setOnClickListener {
+            startActivity(Intent(this, AddressActivity::class.java))
+        }
 
     }
 
