@@ -1,0 +1,73 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/image_view"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_cart_name"
+        android:textSize="20dp"
+        android:layout_toLeftOf="@id/button_remove"
+        android:layout_toRightOf="@id/image_view"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_quant"
+        android:layout_below="@id/text_view_cart_name"
+        android:layout_toLeftOf="@id/button_remove"
+        android:layout_toRightOf="@id/image_view"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_view_price"
+        android:layout_toLeftOf="@id/button_remove"
+        android:layout_toRightOf="@id/image_view"
+        android:layout_below="@id/text_view_quant"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_remove"
+        android:layout_alignParentRight="true"
+        android:text="X"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_add"
+        android:layout_alignParentRight="true"
+        android:text="+"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_below="@id/button_remove"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_dec"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/button_add"
+        android:text="-"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dcdcdc"
+        android:layout_below="@id/button_dec"/>
+
+
+
+</RelativeLayout>

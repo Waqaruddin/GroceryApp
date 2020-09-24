@@ -1,5 +1,6 @@
 package com.example.groceryapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
          when (item.itemId){
-            R.id.action_cart -> Toast.makeText(applicationContext, "Cart", Toast.LENGTH_SHORT).show()
+            R.id.action_cart -> startActivity(Intent(this, CartActivity::class.java))
              R.id.action_profile -> Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT).show()
              R.id.action_setting -> Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT).show()
 
