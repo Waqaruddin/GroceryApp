@@ -25,6 +25,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar.*
+import kotlinx.android.synthetic.main.nav_header.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var sessionManager: SessionManager
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navView = nav_view
         drawerLayout = drawer_layout
         navView.setNavigationItemSelectedListener(this)
+
+        var userName = sessionManager.getUserInfo()
+        var headerView = navView.getHeaderView(0)
+        headerView.text_view_header_name.text = userName
 
         var toggle = ActionBarDrawerToggle( this, drawerLayout, tool_bar, 0,0)
         drawerLayout.addDrawerListener(toggle)
@@ -87,7 +92,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(applicationContext, LoginActivity::class.java))
             }
 
-
         }
         return true
     }
@@ -122,6 +126,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         builder.setPositiveButton("Yes", object:DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 sessionManager.logout()
+                startActivity(Intent(applicationContext, LoginActivity::class.java))
+
             }
 
         })
@@ -144,6 +150,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.item_orders -> Toast.makeText(this, "orders", Toast.LENGTH_SHORT).show()
 
         }
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 

@@ -3,7 +3,7 @@ package com.example.groceryapp.helpers
 import android.content.Context
 import com.example.groceryapp.models.User
 
-class SessionManager(mContext: Context){
+class SessionManager(var mContext: Context){
     private val FILE_NAME = "Registered_users"
     private val KEY_FIRST_NAME = "firstName"
     private val KEY_TOKEN = "token"
@@ -27,6 +27,11 @@ class SessionManager(mContext: Context){
     }
 
 
+    fun getUserInfo():String{
+        var userName =   sharedPreferences.getString(KEY_FIRST_NAME, null)
+        //var userEmail = sharedPreferences.getString(KEY)
+        return userName.toString()
+    }
     fun getUserId():String{
         var userId = sharedPreferences.getString(KEY_ID, null)
         return userId.toString()

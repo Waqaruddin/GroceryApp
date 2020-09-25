@@ -49,10 +49,14 @@ class AddressActivity : AppCompatActivity() {
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = adapterAddress
 
+        button_payment.setOnClickListener {
+            startActivity(Intent(this, PaymentActivity::class.java))
+        }
+
     }
 
     private fun getData() {
-        var userId = "5f64e8f1af18dc0017608565"
+        var userId = sessionManager.getUserId()
         var request = StringRequest(
             Request.Method.GET,
             Endpoints.getAddress(userId),
