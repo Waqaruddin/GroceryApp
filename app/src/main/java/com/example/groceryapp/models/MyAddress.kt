@@ -9,16 +9,16 @@ data class AddressResponse(
 )
 
 data class MyAddress(
-    val __v: Int,
-    val _id: String,
-    val city: String,
-    val houseNo: String,
-    val pincode: Int,
-    val streetName: String,
-    val type: String,
-    val userId: String
+    val __v: Int? = null,
+    val _id: String? = null,
+    val city: String?= null,
+    val houseNo: String? = null,
+    val pincode: Int? = null,
+    val streetName: String? = null,
+    val type: String? = null,
+    val userId: String? = null
 ):Serializable {
     companion object{
-        val KEY_ADDRESS = "Address"
+        const val KEY_ADDRESS = "Address"
     }
 }
