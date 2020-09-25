@@ -1,40 +1,66 @@
-<RelativeLayout android:layout_width="match_parent"
+<androidx.drawerlayout.widget.DrawerLayout
+
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:id="@+id/drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-<include layout="@layout/app_bar"/>
-
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:indeterminate="true"
-        android:id="@+id/progress_bar"/>
-
-    <LinearLayout android:layout_width="match_parent"
+    <RelativeLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@+id/tool_bar"
-        android:background="#fff"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
+        <include layout="@layout/app_bar"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/image_view"
-            />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/recycler_view"/>
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:id="@+id/progress_bar"/>
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@+id/tool_bar"
+            android:background="#fff"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/image_view"
+                />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recycler_view"/>
 
 
 
-    </LinearLayout>
+        </LinearLayout>
 
 
-</RelativeLayout>
+    </RelativeLayout>
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+         />
+
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
 
