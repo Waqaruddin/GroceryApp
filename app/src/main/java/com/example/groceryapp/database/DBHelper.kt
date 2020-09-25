@@ -128,6 +128,7 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
                 database.update(TABLE_NAME, contentValues, whereClause, whereArgs)
             }while(cursor.moveToNext())
         }
+        cursor.close()
     }
 
     fun sub1(product: Product){
@@ -146,6 +147,22 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
                 database.update(TABLE_NAME, contentValues, whereClause, whereArgs)
             }while(cursor.moveToNext())
         }
+        cursor.close()
+    }
+
+    fun getCartTotalQuantity():Int{
+        var database = writableDatabase
+        var count = 0
+        val columns = arrayOf(COLUMN_QUANTITY)
+        var cursor = database.query(TABLE_NAME, columns, null, null, null, null, null)
+        if(cursor != null && cursor.moveToFirst()){
+            do{
+                var qty = cursor.getString(cursor.getColumnIndex(COLUMN_QUANTITY)).toInt()
+                count = count + qty
+            }while(cursor.moveToNext())
+        }
+        cursor.close()
+        return count
     }
 
 

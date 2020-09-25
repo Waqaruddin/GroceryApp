@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
+import androidx.core.view.MenuItemCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
@@ -18,6 +21,7 @@ import com.android.volley.toolbox.Volley
 import com.example.groceryapp.R
 import com.example.groceryapp.adapters.AdapterCategory
 import com.example.groceryapp.app.Endpoints
+import com.example.groceryapp.database.DBHelper
 import com.example.groceryapp.helpers.SessionManager
 import com.example.groceryapp.models.Category
 import com.example.groceryapp.models.CategoryResult
@@ -25,18 +29,23 @@ import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar.*
+import kotlinx.android.synthetic.main.layout_menu_cart.view.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var sessionManager: SessionManager
+    var textViewCartCount: TextView? = null
     lateinit var drawerLayout:DrawerLayout
+    lateinit var dbHelper: DBHelper
     var mList: ArrayList<Category> = ArrayList()
     lateinit var navView:NavigationView
     lateinit var adapterCategory: AdapterCategory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         sessionManager = SessionManager(this)
+        dbHelper = DBHelper(this)
 
         init()
     }
@@ -77,9 +86,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_cart, menu)
+        var item = menu.findItem(R.id.action_cart)
+        MenuItemCompat.setActionView(item, R.layout.layout_menu_cart)
+        var view = MenuItemCompat.getActionView(item)
+        textViewCartCount = view.text_view_cart_count
+        view.setOnClickListener {
+            startActivity(Intent(this, CartActivity::class.java))
+        }
+        updateCartCount()
+
         return true
+    }
+
+    private fun updateCartCount(){
+        var count = dbHelper.getCartTotalQuantity()
+        //var count = 10
+        if(count == 0 ){
+            textViewCartCount?.visibility = View.GONE
+        }else{
+            textViewCartCount?.visibility = View.VISIBLE
+            textViewCartCount?.text = count.toString()
+
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
