@@ -1,5 +1,7 @@
 package com.example.groceryapp.models
 
+import java.io.Serializable
+
 data class AddressResponse(
     val count: Int,
     val `data`: List<MyAddress>,
@@ -15,4 +17,8 @@ data class MyAddress(
     val streetName: String,
     val type: String,
     val userId: String
-)
+):Serializable {
+    companion object{
+        val KEY_ADDRESS = "Address"
+    }
+}
