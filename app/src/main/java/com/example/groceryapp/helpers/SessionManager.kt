@@ -10,6 +10,7 @@ class SessionManager(var mContext: Context){
     private val KEY_ID = "_id"
     private val KEY_IS_LOGGED_IN = "isLoggedIn"
     private val KEY_EMAIL = "email"
+    private val KEY_MOBILE = "mobile"
 
     var sharedPreferences = mContext.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
     var editor = sharedPreferences.edit()
@@ -20,6 +21,7 @@ class SessionManager(var mContext: Context){
         editor.putString(KEY_TOKEN, user.token)
         editor.putBoolean(KEY_IS_LOGGED_IN, true)
         editor.putString(KEY_EMAIL, user.email)
+        editor.putString(KEY_MOBILE, user.mobile)
         editor.commit()
 
     }
@@ -41,6 +43,10 @@ class SessionManager(var mContext: Context){
     fun getUserId():String{
         var userId = sharedPreferences.getString(KEY_ID, null)
         return userId.toString()
+    }
+    fun getUserMobile():String{
+        var mobile = sharedPreferences.getString(KEY_MOBILE, null)
+        return mobile.toString()
     }
 
     fun isLoggedIn():Boolean{

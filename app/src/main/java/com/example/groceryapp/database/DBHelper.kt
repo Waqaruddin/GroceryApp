@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.groceryapp.models.OrderSummary
 import com.example.groceryapp.models.Product
 import com.example.groceryapp.models.Totals
 
@@ -163,6 +164,44 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
         }
         cursor.close()
         return count
+    }
+
+    fun getOrderSummary(): OrderSummary {
+        var database = writableDatabase
+        var total = 0
+        var price = 0
+        var quantity = 0
+        //var discount = 0
+        var deliveryCharges = 0
+        var columns = arrayOf(
+            COLUMN_MRP,
+            COLUMN_PRICE,
+            COLUMN_QUANTITY
+        )
+        var cursor = database.query(TABLE_NAME, columns, null, null, null, null, null)
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                total += cursor.getDouble(cursor.getColumnIndex(COLUMN_MRP)).toInt()
+                price += cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)).toInt()
+                quantity += cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+
+        total *= quantity
+        price *= quantity
+        var discount = total - price
+        //discount=0
+
+        if (price < 300)
+            deliveryCharges = 30
+
+        return OrderSummary(
+            totalAmount = total,
+            ourPrice = price,
+            discount = discount,
+            deliveryCharges = deliveryCharges
+        )
     }
 
 

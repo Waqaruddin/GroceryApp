@@ -20,10 +20,10 @@ data class FinalOrder(
 )
 
 data class OrderSummary(
-    val _id: String,
+    val _id: String? = null,
     val deliveryCharges: Int,
     val discount: Int,
-    val orderAmount: Int,
+    val orderAmount: Int? = null,
     val ourPrice: Int,
     val totalAmount: Int
 )

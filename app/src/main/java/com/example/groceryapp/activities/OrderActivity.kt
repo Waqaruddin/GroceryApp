@@ -31,7 +31,7 @@ class OrderActivity : AppCompatActivity() {
     private fun init() {
         var address = sessionManagerAddress.getAddress()
         mList = dbHelper.getProduct()
-        var totals = dbHelper.getTotal(mList)
+        var orderSummary = dbHelper.getOrderSummary()
 
         ///Preffered Address
         text_view_city.text = address.city
@@ -39,10 +39,20 @@ class OrderActivity : AppCompatActivity() {
         text_view_our_house_no.text = address.houseNo
         text_view_street_name.text = address.streetName
 
-        ///Bill Break Down
-        text_view_total_amount.text = totals.subtotal.toString()
-        text_view_discount.text = totals.discount.toString()
-        text_view_order_amount.text = totals.total.toString()
+        ///Bill Breakdown
+        text_view_total_amount.text = "Total Amount " + orderSummary.totalAmount.toString()
+        text_view_discount.text = "Discount " + orderSummary.discount.toString()
+        text_view_delivery_charges.text = "Delivery Charges " + orderSummary.deliveryCharges
+        text_view_our_price.text = "Our Price " + orderSummary.ourPrice.toString()
+        text_view_order_amount.text = "Order Amount " +  orderSummary.totalAmount.toString()
+
+        /// User Info
+        text_view_our_mobile.text = sessionManager.getUserMobile()
+        text_view_name.text = sessionManager.getUserInfo()
+        text_view_email.text = sessionManager.getUserEmail()
+
+
+
 
 
 
