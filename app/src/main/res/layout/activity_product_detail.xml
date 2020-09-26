@@ -3,7 +3,10 @@
     android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <include layout = "@layout/app_bar"/>
+
     <ImageView
+        android:layout_marginTop="70dp"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:id="@+id/image_view"

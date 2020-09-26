@@ -95,7 +95,7 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
     fun deleteProduct(id:String){
         var database = writableDatabase
         var whereClause = "$COLUMN_ID = ?"
-        var whereArgs = arrayOf(id.toString())
+        var whereArgs = arrayOf(id)
         database.delete(TABLE_NAME, whereClause, whereArgs)
     }
 
@@ -134,19 +134,22 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
 
     fun sub1(product: Product){
         var database = writableDatabase
-
         val columns = arrayOf(COLUMN_QUANTITY)
         val whereClause = "$COLUMN_ID = ?"
         val whereArgs = arrayOf(product._id)
         val cursor = database.query(TABLE_NAME, columns, whereClause, whereArgs, null, null, null)
 
-        if(cursor != null && cursor.moveToFirst()){
-            do{
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
                 val count = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY))
                 val contentValues = ContentValues()
-                contentValues.put(COLUMN_QUANTITY, count-1)
+                contentValues.put(COLUMN_QUANTITY, count - 1)
+                if(count-1 == 0){
+                    deleteProduct(product._id!!)
+                }
                 database.update(TABLE_NAME, contentValues, whereClause, whereArgs)
-            }while(cursor.moveToNext())
+
+            } while (cursor.moveToNext())
         }
         cursor.close()
     }
@@ -202,6 +205,15 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
             discount = discount,
             deliveryCharges = deliveryCharges
         )
+    }
+
+    fun plus1(product:Product){
+        var database = writableDatabase
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(product._id)
+        var contentValues = ContentValues()
+        contentValues.put(COLUMN_QUANTITY, (product.quantity))
+        database.update(TABLE_NAME, contentValues,whereClause,whereArgs)
     }
 
 

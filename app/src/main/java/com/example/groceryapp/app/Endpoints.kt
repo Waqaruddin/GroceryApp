@@ -11,6 +11,7 @@ class Endpoints {
         private const val URL_PRODUCT_BY_SUB = "products/sub"
         private const val URL_PRODUCT = "product"
         private const val URL_ADDRESS = "address"
+        private const val URL_ORDERS = "orders"
 
         fun getRegister():String{
             return Config.BASE_URL + URL_REGISTER
@@ -47,6 +48,10 @@ class Endpoints {
         }
         fun getAddress(userId:String):String{
             return Config.BASE_URL + URL_ADDRESS + "/" + userId
+        }
+
+        fun postOrder():String{
+            return Config.BASE_URL + URL_ORDERS
         }
 
 

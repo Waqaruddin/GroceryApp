@@ -15,17 +15,19 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_adapter_cart.view.*
 
 
-class AdapterCart(var mContext: Context, var mList:ArrayList<Product>):RecyclerView.Adapter<AdapterCart.MyViewHolder>(){
+class AdapterCart(var mContext: Context, var mList: ArrayList<Product>) :
+    RecyclerView.Adapter<AdapterCart.MyViewHolder>() {
 
-    inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(product: Product, position: Int) {
             itemView.text_view_cart_name.text = product.productName
             itemView.text_view_quant.text = product.quantity.toString()
+            itemView.text_view_item_quantity.text = product.quantity.toString()
             itemView.text_view_price.text = product.price.toString()
             var dbHelper = DBHelper(mContext)
 
             Picasso.get()
-                .load(Config.IMAGE_URL +  product.image)
+                .load(Config.IMAGE_URL + product.image)
                 .into(itemView.image_view)
 
             itemView.button_remove.setOnClickListener {
@@ -34,25 +36,21 @@ class AdapterCart(var mContext: Context, var mList:ArrayList<Product>):RecyclerV
                 notifyItemRemoved(position)
             }
             itemView.button_add.setOnClickListener {
-//                if(product.quantity >= 0 ) {
-//                    product.quantity += 1
-//                    itemView.text_view_quant.text = product.quantity.toString()
-//                }
                 dbHelper.add1(product)
+                notifyItemChanged(position)
                 restart()
-
             }
             itemView.button_dec.setOnClickListener {
-//                if(product.quantity >0 ){
-//                    product.quantity -= 1
-//                    itemView.text_view_quant.text = product.quantity.toString()
-//                }
+
                 dbHelper.sub1(product)
+                notifyDataSetChanged()
                 restart()
+
             }
 
-    }
 
+
+        }
 
         private fun restart() {
             val activity: CartActivity = mContext as CartActivity
@@ -77,12 +75,10 @@ class AdapterCart(var mContext: Context, var mList:ArrayList<Product>):RecyclerV
         return mList.size
     }
 
-    fun setData(l:ArrayList<Product>){
+    fun setData(l: ArrayList<Product>) {
         mList = l
         notifyDataSetChanged()
     }
-
-
 
 
 }

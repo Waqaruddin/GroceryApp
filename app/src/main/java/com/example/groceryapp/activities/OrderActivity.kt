@@ -16,14 +16,15 @@ class OrderActivity : AppCompatActivity() {
     lateinit var sessionManagerAddress: SessionManagerAddress
     lateinit var dbHelper: DBHelper
 
-    var mList:ArrayList<Product> = ArrayList()
-   // var address:MyAddress? = null
+    var mList: ArrayList<Product> = ArrayList()
+
+    // var address:MyAddress? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_submit_order)
         sessionManager = SessionManager(this)
-       sessionManagerAddress = SessionManagerAddress(this)
-         dbHelper = DBHelper(this)
+        sessionManagerAddress = SessionManagerAddress(this)
+        dbHelper = DBHelper(this)
 
         init()
     }
@@ -44,7 +45,7 @@ class OrderActivity : AppCompatActivity() {
         text_view_discount.text = "Discount " + orderSummary.discount.toString()
         text_view_delivery_charges.text = "Delivery Charges " + orderSummary.deliveryCharges
         text_view_our_price.text = "Our Price " + orderSummary.ourPrice.toString()
-        text_view_order_amount.text = "Order Amount " +  orderSummary.totalAmount.toString()
+        text_view_order_amount.text = "Order Amount " + orderSummary.totalAmount.toString()
 
         /// User Info
         text_view_our_mobile.text = sessionManager.getUserMobile()
@@ -56,17 +57,6 @@ class OrderActivity : AppCompatActivity() {
 
 
 
-
-
-
-        button_submit_order.setOnClickListener {
-            var userId = sessionManager.getUserId()
-        }
     }
 
-    private fun getAddressInfo() {
-//        text_view_city.text = address?.city
-//        text_view_our_house_no.text = address?.houseNo
-//        text_view_pincode.text = address?.pincode.toString()
-    }
 }
