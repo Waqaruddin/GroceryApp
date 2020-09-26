@@ -4,6 +4,7 @@
     android:weightSum="2"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <include layout = "@layout/app_bar"/>
 
 
     <RelativeLayout
@@ -63,20 +64,26 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:id="@+id/button_pay_online"
-            android:text="Pay Online"
+            android:text="Pay online"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_rounded"
+            android:textColor="#fff"/>
 
 
         <Button
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:id="@+id/button_pay_delivery"
-            android:text="Pay by Cash on Delivery"
+            android:text="Pay cah on delivery"
            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_rounded"
+            android:textColor="#fff"/>
 
     </RelativeLayout>
 

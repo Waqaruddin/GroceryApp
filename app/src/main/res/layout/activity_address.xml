@@ -3,11 +3,18 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <include layout="@layout/app_bar" />
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/button_add"
-        android:text="Add"
+        android:text="Add new address"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_rounded"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -20,8 +27,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_payment"
-        android:text="Payment"
-        android:textSize="25dp"
+        android:text="Continue to payment"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:background="@drawable/button_rounded"
+        android:textColor="#fff"
         />
 
 

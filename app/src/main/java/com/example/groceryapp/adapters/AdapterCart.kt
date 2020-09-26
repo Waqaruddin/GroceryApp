@@ -21,9 +21,9 @@ class AdapterCart(var mContext: Context, var mList: ArrayList<Product>) :
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(product: Product, position: Int) {
             itemView.text_view_cart_name.text = product.productName
-            itemView.text_view_quant.text = product.quantity.toString()
+           // itemView.text_view_quant.text = product.quantity.toString()
             itemView.text_view_item_quantity.text = product.quantity.toString()
-            itemView.text_view_price.text = product.price.toString()
+            itemView.text_view_price.text =  product.price.toString()
             var dbHelper = DBHelper(mContext)
 
             Picasso.get()
