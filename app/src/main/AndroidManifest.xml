@@ -24,7 +24,9 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".activities.AddAddressActivity"></activity>
+        <activity android:name=".activities.AddAddressActivity">
+
+        </activity>
         <activity android:name=".activities.AddressActivity"></activity>
         <activity android:name=".activities.CartActivity" />
         <activity android:name=".activities.ProductDetailActivity" />

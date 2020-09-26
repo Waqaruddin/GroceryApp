@@ -70,7 +70,6 @@ class AddressActivity : AppCompatActivity() {
 
         button_add.setOnClickListener {
             startActivity(Intent(this, AddAddressActivity::class.java))
-            finish()
         }
 
         getData()
