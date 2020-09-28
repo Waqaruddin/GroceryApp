@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.OrderActivity">
+        <activity android:name=".activities.OrderHistoryActivity">
 
 
         </activity>
+        <activity android:name=".activities.OrderActivity"></activity>
         <activity android:name=".activities.PaymentActivity" />
         <activity android:name=".activities.StartActivity">
             <intent-filter>
@@ -24,17 +25,18 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".activities.AddAddressActivity">
-
-        </activity>
-        <activity android:name=".activities.AddressActivity"></activity>
+        <activity android:name=".activities.AddAddressActivity"></activity>
+        <activity android:name=".activities.AddressActivity" />
         <activity android:name=".activities.CartActivity" />
         <activity android:name=".activities.ProductDetailActivity" />
         <activity android:name=".activities.SubCategoryActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.WelcomeActivity" />
+        <activity android:name=".activities.WelcomeActivity">
+
+
+        </activity>
     </application>
 
 </manifest>

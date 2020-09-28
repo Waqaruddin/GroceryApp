@@ -77,9 +77,9 @@ class AddressActivity : AppCompatActivity() {
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = adapterAddress
 
-        button_payment.setOnClickListener {
-            startActivity(Intent(this, PaymentActivity::class.java))
-        }
+//        button_payment.setOnClickListener {
+//            startActivity(Intent(this, PaymentActivity::class.java))
+//        }
 
     }
 

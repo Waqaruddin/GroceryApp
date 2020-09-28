@@ -56,6 +56,9 @@ class LoginActivity : AppCompatActivity() {
             Volley.newRequestQueue(this).add(request)
 
         }
+        text_view_create_account.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
     }
 
 

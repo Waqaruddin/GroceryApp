@@ -52,8 +52,21 @@ class ProductDetailActivity : AppCompatActivity() {
         button_add.setOnClickListener {
             product?.quantity = 1
             dbHelper.addProduct(product!!)
+            if(dbHelper.contains(product!!)){
+                button_add.visibility = View.INVISIBLE
+                product_add_layout.visibility = View.VISIBLE
+
+            }else{
+                button_add.visibility = View.VISIBLE
+                product_add_layout.visibility = View.INVISIBLE
+            }
 
         }
+
+        product_add_image.setOnClickListener {
+            product_count.text = dbHelper.add1(product!!).toString()
+        }
+
 
     }
 
@@ -86,9 +99,6 @@ class ProductDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             android.R.id.home -> finish()
-            R.id.action_cart -> Toast.makeText(applicationContext, "Cart", Toast.LENGTH_SHORT).show()
-            R.id.action_profile -> Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT).show()
-            R.id.action_setting -> Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT).show()
 
         }
         return true

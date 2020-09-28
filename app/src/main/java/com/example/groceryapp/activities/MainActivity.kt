@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.item_account -> Toast.makeText(this, "account", Toast.LENGTH_SHORT).show()
             R.id.item_settings -> Toast.makeText(this, "settings", Toast.LENGTH_SHORT).show()
-            R.id.item_orders -> Toast.makeText(this, "orders", Toast.LENGTH_SHORT).show()
+            R.id.item_orders -> startActivity(Intent(this, OrderHistoryActivity::class.java))
 
         }
         return true

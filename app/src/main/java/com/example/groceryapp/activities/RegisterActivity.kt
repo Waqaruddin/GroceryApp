@@ -26,32 +26,42 @@ class RegisterActivity : AppCompatActivity() {
             var password = edit_text_password.text.toString()
             var phone = edit_text_phone.text.toString()
 
+            if(name == "" || email == "" || password == "" || phone == ""){
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+            }else if(password.length != 6){
+                Toast.makeText(this, "Password must be 6 characters long", Toast.LENGTH_SHORT).show()
+            } else{
+                var params = HashMap<String, String>()
+                params["firstName"] = name
+                params["email"] = email
+                params["password"] = password
+                params["mobile"] = phone
 
-            var params = HashMap<String, String>()
-            params["firstName"] = name
-            params["email"] = email
-            params["password"] = password
-            params["mobile"] = phone
+                var jsonObject = JSONObject(params as Map<*, *>)
 
-            var jsonObject = JSONObject(params as Map<*, *>)
+                var url = Endpoints.getRegister()
 
-            var url = Endpoints.getRegister()
+                var request = JsonObjectRequest(
+                    Request.Method.POST,
+                    url,
+                    jsonObject,
+                    {
+                        Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT).show()
+                    },
+                    {
 
-            var request = JsonObjectRequest(
-                Request.Method.POST,
-                url,
-                jsonObject,
-                {
-                    Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT).show()
-                },
-                {
+                        Toast.makeText(applicationContext, "Error", Toast.LENGTH_SHORT).show()
 
-                    Toast.makeText(applicationContext, "Error", Toast.LENGTH_SHORT).show()
+                    }
+                )
+                Volley.newRequestQueue(this).add(request)
+                startActivity(Intent(this, LoginActivity::class.java))
 
-                }
-            )
-            Volley.newRequestQueue(this).add(request)
+            }
 
+        }
+
+        text_view_sign_in.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
     }

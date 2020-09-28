@@ -54,6 +54,10 @@ class Endpoints {
             return Config.BASE_URL + URL_ORDERS
         }
 
+        fun getOrder(userId:String):String{
+            return Config.BASE_URL + URL_ORDERS + "/" + userId
+        }
+
 
     }
 }

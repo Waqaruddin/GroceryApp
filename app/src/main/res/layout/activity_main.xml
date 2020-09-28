@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_below="@+id/tool_bar"
-            android:background="#fff"
+            android:background="#dcdcdc"
             xmlns:android="http://schemas.android.com/apk/res/android">
 
 

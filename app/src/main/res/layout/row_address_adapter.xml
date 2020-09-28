@@ -9,21 +9,24 @@
         android:id="@+id/text_view_pincode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:textSize="18dp"
+        android:textColor="#000"/>
 
 
     <TextView
         android:id="@+id/text_view_street"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:textSize="18dp"
+        android:textColor="#000"/>
 
 
     <TextView
         android:id="@+id/text_view_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:textSize="18dp"
+        android:textColor="#000"/>
 
 
 <!--    <TextView-->

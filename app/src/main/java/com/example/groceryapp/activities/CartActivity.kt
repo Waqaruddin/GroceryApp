@@ -47,10 +47,9 @@ class CartActivity : AppCompatActivity() {
 
         var orderSummary = dbHelper.getOrderSummary()
 
-        var totals = dbHelper.getTotal(mList)
-        text_view_total.text = orderSummary.ourPrice.toString()
-        text_view_discount.text = orderSummary.discount.toString()
-        text_view_subtotal.text = orderSummary.totalAmount.toString()
+        text_view_total.text = "$" + orderSummary.ourPrice.toString()
+        text_view_discount.text = "$" + orderSummary.discount.toString()
+        text_view_subtotal.text = "$" +  orderSummary.totalAmount.toString()
 
         button_checkout.setOnClickListener {
             startActivity(Intent(this, AddressActivity::class.java))

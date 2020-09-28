@@ -1,6 +1,5 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9dff9d"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -16,21 +15,33 @@
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_register"
-        android:layout_centerInParent="true"
         android:layout_below="@id/text_view_welcome"
-        android:text="Register"/>
+        android:text="Sign up"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="#fff"
+        android:textAllCaps="false"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_rounded"/>
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_login"
-        android:layout_centerInParent="true"
         android:layout_below="@id/button_register"
-        android:text="Login"/>
+        android:text="Sign in"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/button_rounded"
+        android:layout_marginTop="20dp"/>
 
 
 

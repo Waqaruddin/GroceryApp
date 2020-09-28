@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groceryapp.R
-import com.example.groceryapp.activities.OrderActivity
+//import com.example.groceryapp.activities.OrderActivity
+import com.example.groceryapp.activities.PaymentActivity
 import com.example.groceryapp.helpers.SessionManager
 import com.example.groceryapp.helpers.SessionManagerAddress
 import com.example.groceryapp.models.MyAddress
@@ -26,7 +27,7 @@ class AdapterAddress(var mContext:Context , var mList:ArrayList<MyAddress>):Recy
             itemView.setOnClickListener {
                 var sessionManager = SessionManagerAddress(mContext)
                 sessionManager.saveAddress(address)
-                mContext.startActivity(Intent(mContext, OrderActivity::class.java))
+                mContext.startActivity(Intent(mContext, PaymentActivity::class.java))
 
             }
         }

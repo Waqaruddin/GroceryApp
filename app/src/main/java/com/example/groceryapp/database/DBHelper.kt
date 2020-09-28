@@ -2,6 +2,7 @@ package com.example.groceryapp.database
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.groceryapp.models.OrderSummary
@@ -169,6 +170,15 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
         return count
     }
 
+    fun contains(product: Product):Boolean{
+        var database = writableDatabase
+
+        val exist = DatabaseUtils.longForQuery(database,
+        "Select count(*) from $TABLE_NAME where $COLUMN_ID = '${product._id}'",
+        null)
+        return exist >= 1
+    }
+
     fun getOrderSummary(): OrderSummary {
         var database = writableDatabase
         var total = 0
@@ -214,6 +224,11 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
         var contentValues = ContentValues()
         contentValues.put(COLUMN_QUANTITY, (product.quantity))
         database.update(TABLE_NAME, contentValues,whereClause,whereArgs)
+    }
+
+    fun emptyCart() {
+        var database = writableDatabase
+        database.execSQL("delete from $TABLE_NAME")
     }
 
 

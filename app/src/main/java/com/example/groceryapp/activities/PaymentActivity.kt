@@ -38,13 +38,14 @@ class PaymentActivity : AppCompatActivity() {
 
     private fun init() {
         setupToolbar()
+        var orderSummary = dbHelper.getOrderSummary()
 
         mList = dbHelper.getProduct()
         var totals = dbHelper.getTotal(mList)
-        text_view_subtotal.text = "Subtotal " + totals.subtotal.toString()
-        text_view_discount.text = "Discount " + totals.discount.toString()
-        text_view_order_amount.text = "Total " + totals.total.toString()
-        text_view_total_amount.text = totals.total.toString()
+        text_view_subtotal.text = "Subtotal: $" + orderSummary.totalAmount.toString()
+        text_view_discount.text = "Discount: $" + orderSummary.discount.toString()
+        text_view_order_amount.text = "Total: $" + orderSummary.ourPrice.toString()
+        text_view_total_amount.text = "$" + orderSummary.ourPrice.toString()
 
         button_pay_online.setOnClickListener {
             Toast.makeText(this, "Accepting Cash Only", Toast.LENGTH_SHORT).show()
