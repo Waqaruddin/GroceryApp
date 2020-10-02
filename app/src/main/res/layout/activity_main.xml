@@ -13,12 +13,7 @@
 
         <include layout="@layout/app_bar"/>
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:indeterminate="true"
-            android:id="@+id/progress_bar"/>
+
 
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,15 +23,14 @@
             xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-            <ViewFlipper
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:id="@+id/view_flipper"
-                android:autoStart="true"
-                android:flipInterval="2000"
+               android:src="@drawable/indian_grocery_stores"
                 >
 
-            </ViewFlipper>
+            </ImageView>
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -44,7 +38,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/recycler_view"/>
 
-
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:layout_gravity="center"
+                android:id="@+id/progress_bar"/>
 
         </LinearLayout>
 

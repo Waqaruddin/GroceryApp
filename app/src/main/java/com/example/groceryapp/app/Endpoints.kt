@@ -58,6 +58,10 @@ class Endpoints {
             return Config.BASE_URL + URL_ORDERS + "/" + userId
         }
 
+        fun deleteAddress(userId:String):String{
+            return Config.BASE_URL + URL_ADDRESS + "/" + userId
+        }
+
 
     }
 }
