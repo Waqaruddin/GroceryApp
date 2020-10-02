@@ -83,6 +83,8 @@ class OrderActivity : AppCompatActivity() {
 
         button_submit_order.setOnClickListener {
             postOrder()
+            startActivity(Intent(this, OrderCompletedActivity::class.java))
+            finish()
         }
 
     }
@@ -134,8 +136,6 @@ class OrderActivity : AppCompatActivity() {
             {
                 Toast.makeText(this, "Posted Order", Toast.LENGTH_SHORT).show()
                 dbHelper.emptyCart()
-                startActivity(Intent(this, MainActivity::class.java))
-
             },
             {
                 Toast.makeText(this, "Error posting order", Toast.LENGTH_SHORT).show()

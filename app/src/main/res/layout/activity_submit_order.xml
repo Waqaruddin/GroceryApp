@@ -2,6 +2,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <include layout = "@layout/app_bar"/>
 
 
@@ -56,7 +57,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -129,42 +129,6 @@
 
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/text_view_mrp"
-            android:text="MRP"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/text_view_price"
-            android:text="Price"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/text_view_quantity"
-            android:text="Quantity" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/image_view"
-            android:text="Image"
-            android:layout_marginBottom="20dp"/>
-
-    </LinearLayout>
-
-
-
-
-
 
     <Button
         android:layout_width="match_parent"

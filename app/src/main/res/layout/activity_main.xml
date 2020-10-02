@@ -28,11 +28,15 @@
             xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-            <ImageView
+            <ViewFlipper
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:id="@+id/image_view"
-                />
+                android:id="@+id/view_flipper"
+                android:autoStart="true"
+                android:flipInterval="2000"
+                >
+
+            </ViewFlipper>
 
 
             <androidx.recyclerview.widget.RecyclerView

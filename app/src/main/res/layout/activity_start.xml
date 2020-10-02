@@ -1,6 +1,6 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background= "#FF726f"
+    android:background= "#98FB98"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 <!--    <ImageView-->

@@ -9,7 +9,7 @@ import com.example.groceryapp.helpers.SessionManager
 
 class StartActivity : AppCompatActivity() {
 
-    private val delayedTime: Long = 2000
+    private val delayedTime: Long = 3000
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)

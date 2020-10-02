@@ -4,11 +4,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
+import android.view.*
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
@@ -33,6 +30,7 @@ import kotlinx.android.synthetic.main.layout_menu_cart.view.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     lateinit var sessionManager: SessionManager
     var textViewCartCount: TextView? = null
     lateinit var drawerLayout:DrawerLayout
@@ -49,6 +47,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         init()
     }
+
 
     private fun setupToolbar() {
         var toolbar = tool_bar
@@ -75,6 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         adapterCategory = AdapterCategory(this)
         recycler_view.layoutManager = GridLayoutManager(this, 2)
         recycler_view.adapter = adapterCategory
+
     }
 
     override fun onBackPressed() {

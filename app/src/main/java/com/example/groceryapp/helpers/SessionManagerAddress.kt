@@ -15,6 +15,7 @@ class SessionManagerAddress(var mContext: Context){
     var editor = sharedPreferences.edit()
 
 
+
     fun saveAddress(address: MyAddress){
         editor.putString(KEY_PIN, address.pincode.toString())
         editor.putString(KEY_STREET, address.streetName)
