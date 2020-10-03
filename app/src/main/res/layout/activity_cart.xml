@@ -1,9 +1,10 @@
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="2"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <include layout = "@layout/app_bar"/>
+    android:weightSum="2">
+
+    <include layout="@layout/app_bar" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -11,96 +12,115 @@
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/recycler_view"/>
+            android:layout_height="wrap_content" />
+
+
+
 
     </RelativeLayout>
 
-
-
-
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_weight="1">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Subtotal"
-        android:layout_alignParentRight="true"
-        android:layout_above="@id/text_view_discount"
-        android:id="@+id/text_view_subtotal"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Discount"
-        android:layout_alignParentRight="true"
-        android:layout_above="@id/text_view_total"
-        android:id="@+id/text_view_discount"/>
-
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:id="@+id/image_view_cart"
+        android:src="@drawable/ic_baseline_shopping_cart_24"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Total"
-        android:layout_alignParentRight="true"
-        android:layout_above="@id/button_checkout"
-        android:id="@+id/text_view_total"/>
-    <TextView
+        android:id="@+id/text_view_empty"
+        android:textSize="32dp"
+        android:text="Your cart's all empty"
+        android:layout_gravity="center"
+        android:visibility="invisible"/>
+
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Subtotal:"
-        android:layout_alignParentLeft="true"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_above="@id/text_view_tdiscount"
-        android:id="@+id/text_view_tsubtotal"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Discount:"
-        android:layout_alignParentLeft="true"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_above="@id/text_view_ttotal"
-        android:id="@+id/text_view_tdiscount"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/relative_layout_totals">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Total:"
-        android:layout_alignParentLeft="true"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_above="@id/button_checkout"
-        android:id="@+id/text_view_ttotal"/>
+        <TextView
+            android:id="@+id/text_view_subtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_discount"
+            android:layout_alignParentRight="true"
+            android:text="Subtotal"
+            android:textSize="20dp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_checkout"
-        android:text="Continue to address"
-        android:textSize="15dp"
-        android:layout_margin="20dp"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:background="@drawable/button_rounded"
-        android:layout_alignParentBottom="true"/>
-
-</RelativeLayout>
+        <TextView
+            android:id="@+id/text_view_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_total"
+            android:layout_alignParentRight="true"
+            android:text="Discount"
+            android:textSize="20dp" />
 
 
+        <TextView
+            android:id="@+id/text_view_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/button_checkout"
+            android:layout_alignParentRight="true"
+            android:text="Total"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/text_view_tsubtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_tdiscount"
+            android:layout_alignParentLeft="true"
+            android:text="Subtotal:"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_view_tdiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_ttotal"
+            android:layout_alignParentLeft="true"
+            android:text="Discount:"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/text_view_ttotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/button_checkout"
+            android:layout_alignParentLeft="true"
+            android:text="Total:"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_checkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_rounded"
+            android:text="Continue to address"
+            android:textColor="#fff"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
 
 </LinearLayout>

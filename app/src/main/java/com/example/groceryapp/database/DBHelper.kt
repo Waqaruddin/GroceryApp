@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.widget.Toast
 import com.example.groceryapp.models.OrderSummary
 import com.example.groceryapp.models.Product
 import com.example.groceryapp.models.Totals
@@ -230,6 +231,8 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
         var database = writableDatabase
         database.execSQL("delete from $TABLE_NAME")
     }
+
+
 
 
 }

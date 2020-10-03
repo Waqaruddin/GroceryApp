@@ -54,6 +54,13 @@ class CartActivity : AppCompatActivity() {
         button_checkout.setOnClickListener {
             startActivity(Intent(this, AddressActivity::class.java))
         }
+        var count = dbHelper.getCartTotalQuantity()
+        if(count == 0){
+            text_view_empty.visibility = View.VISIBLE
+            image_view_cart.visibility = View.VISIBLE
+            relative_layout_totals.visibility = View.INVISIBLE
+        }
+
 
     }
 
