@@ -16,19 +16,19 @@ class StartActivity : AppCompatActivity() {
 
         var handler = Handler()
         handler.postDelayed({
-            checkLogin()
+            startActivity(Intent(this, MainActivity::class.java))
         }, delayedTime)
     }
 
-    private fun checkLogin() {
-        var sessionManager = SessionManager(this)
-        if(sessionManager.isLoggedIn()){
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }else{
-            startActivity(Intent(this, WelcomeActivity::class.java))
-            finish()
-
-        }
-    }
+//    private fun checkLogin() {
+//        var sessionManager = SessionManager(this)
+//        if(sessionManager.isLoggedIn()){
+//            startActivity(Intent(this, MainActivity::class.java))
+//            finish()
+//        }else{
+//            startActivity(Intent(this, MainActivity::class.java))
+//            finish()
+//
+//        }
+//    }
 }

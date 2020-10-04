@@ -62,11 +62,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout = drawer_layout
         navView.setNavigationItemSelectedListener(this)
 
-        var userName = sessionManager.getUserInfo()
-        var userEmail = sessionManager.getUserEmail()
+        var userName:String? = null
+        var userEmail:String? = null
+        if(sessionManager.isLoggedIn()){
+            userName = sessionManager.getUserInfo()
+            userEmail = sessionManager.getUserEmail()
+        }else{
+            userName = "Guest!"
+            userEmail = "You are not signed in"
+        }
+
         var headerView = navView.getHeaderView(0)
         headerView.text_view_header_name.text = userName
         headerView.text_view_header_email.text = userEmail
+
+
+
 
         var toggle = ActionBarDrawerToggle( this, drawerLayout, tool_bar, 0,0)
         drawerLayout.addDrawerListener(toggle)
@@ -114,14 +125,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+
             R.id.action_cart -> startActivity(Intent(this, CartActivity::class.java))
             R.id.action_profile -> Toast.makeText(applicationContext, "Profile", Toast.LENGTH_SHORT)
                 .show()
             R.id.action_setting -> Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT)
                 .show()
             R.id.action_logout -> {
-                sessionManager.logout()
-                startActivity(Intent(applicationContext, LoginActivity::class.java))
+                if(sessionManager.isLoggedIn()){
+                    sessionManager.logout()
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                }else{
+                    Toast.makeText(applicationContext, "Logout", Toast.LENGTH_SHORT).show()
+                }
+
             }
 
         }
@@ -158,7 +175,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         builder.setPositiveButton("Yes", object:DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 sessionManager.logout()
-                startActivity(Intent(applicationContext, LoginActivity::class.java))
+                startActivity(Intent(applicationContext, MainActivity::class.java))
 
             }
 
@@ -177,8 +194,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_logout -> {
-                dialogueLogout()
-                drawerLayout.closeDrawer(GravityCompat.START)
+                if(sessionManager.isLoggedIn()){
+                    dialogueLogout()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                }else{
+                    Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show()
+                }
+
             }
             R.id.item_account -> Toast.makeText(this, "account", Toast.LENGTH_SHORT).show()
             R.id.item_settings -> Toast.makeText(this, "settings", Toast.LENGTH_SHORT).show()

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groceryapp.R
 import com.example.groceryapp.adapters.AdapterCart
 import com.example.groceryapp.database.DBHelper
+import com.example.groceryapp.helpers.SessionManager
 import com.example.groceryapp.models.Product
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.app_bar.*
@@ -52,7 +53,12 @@ class CartActivity : AppCompatActivity() {
         text_view_subtotal.text = "$" +  orderSummary.totalAmount.toString()
 
         button_checkout.setOnClickListener {
-            startActivity(Intent(this, AddressActivity::class.java))
+            var sessionManager = SessionManager(this)
+            if(sessionManager.isLoggedIn()){
+                startActivity(Intent(this, AddressActivity::class.java))
+            }else{
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
         }
         var count = dbHelper.getCartTotalQuantity()
         if(count == 0){
