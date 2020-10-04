@@ -11,6 +11,7 @@ import com.example.groceryapp.models.Product
 import com.example.groceryapp.models.Totals
 
 class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, DATABASE_VERSION){
+    val database = writableDatabase
 
     companion object{
         const val DATA_NAME = "prodDB"
@@ -38,9 +39,21 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
         onCreate(db)
     }
 
+    fun getProductQuantityFromCart(product: Product):Int{
+        var quantity = 0
+        var query = "Select * from $TABLE_NAME where $COLUMN_ID = ?"
+        var cursor = database.rawQuery(query, arrayOf(product._id))
+        if(cursor.moveToFirst()){
+            quantity = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY))
+            cursor.close()
+            return quantity
+        }
+        return quantity
+    }
+
     fun addProduct(product: Product) {
         if (isItemInCart(product)) {
-            add1(product)
+            updateProductQuantity(product)
         } else {
             var database = writableDatabase
             var contentValues = ContentValues()
@@ -115,23 +128,28 @@ class DBHelper(var context:Context):SQLiteOpenHelper(context, DATA_NAME, null, D
 
     }
 
-    fun add1(product: Product){
+    fun updateProductQuantity(product: Product){
         var database = writableDatabase
 
-        val columns = arrayOf(COLUMN_QUANTITY)
-        val whereClause = "$COLUMN_ID = ?"
-        val whereArgs = arrayOf(product._id)
-        val cursor = database.query(TABLE_NAME, columns, whereClause, whereArgs, null, null, null)
-
-        if(cursor != null && cursor.moveToFirst()){
-            do{
-                val count = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY))
-                val contentValues = ContentValues()
-                contentValues.put(COLUMN_QUANTITY, count+1)
-                database.update(TABLE_NAME, contentValues, whereClause, whereArgs)
-            }while(cursor.moveToNext())
-        }
-        cursor.close()
+        var content = ContentValues()
+        content.put(COLUMN_QUANTITY, product.quantity)
+        database.update(TABLE_NAME, content, "$COLUMN_ID = ?", arrayOf(product._id))
+//        var database = writableDatabase
+//
+//        val columns = arrayOf(COLUMN_QUANTITY)
+//        val whereClause = "$COLUMN_ID = ?"
+//        val whereArgs = arrayOf(product._id)
+//        val cursor = database.query(TABLE_NAME, columns, whereClause, whereArgs, null, null, null)
+//
+//        if(cursor != null && cursor.moveToFirst()){
+//            do{
+//                val count = cursor.getInt(cursor.getColumnIndex(COLUMN_QUANTITY))
+//                val contentValues = ContentValues()
+//                contentValues.put(COLUMN_QUANTITY, count+1)
+//                database.update(TABLE_NAME, contentValues, whereClause, whereArgs)
+//            }while(cursor.moveToNext())
+//        }
+//        cursor.close()
     }
 
     fun sub1(product: Product){

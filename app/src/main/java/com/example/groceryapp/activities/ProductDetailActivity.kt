@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.layout_menu_cart.view.*
 
-class ProductDetailActivity : AppCompatActivity() {
+class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
     var product: Product? = null
     lateinit var dbHelper: DBHelper
     var textViewCartCount: TextView? = null
@@ -39,8 +39,30 @@ class ProductDetailActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
+    private fun updateUI(){
+        var quantity = dbHelper.getProductQuantityFromCart(product!!)
+        if(quantity > 0){
+            button_add.visibility = View.INVISIBLE
+            product_add_layout.visibility = View.VISIBLE
+            product_count.text = quantity.toString()
+        }else{
+            button_add.visibility = View.VISIBLE
+            product_add_layout.visibility = View.INVISIBLE
+
+        }
+    }
+
     private fun init() {
         setupToolbar()
+        updateUI()
+        setData(product!!)
+        button_add.setOnClickListener(this)
+        product_add_sign.setOnClickListener(this)
+        product_sub_sign.setOnClickListener(this)
+
+    }
+
+    private fun setData(product: Product){
 
         text_view_name.text = product?.productName
         text_view_price.text = "Price: " + product?.price.toString()
@@ -48,24 +70,6 @@ class ProductDetailActivity : AppCompatActivity() {
         Picasso.get()
             .load(Config.IMAGE_URL + product?.image)
             .into(image_view)
-
-        button_add.setOnClickListener {
-            product?.quantity = 1
-            dbHelper.addProduct(product!!)
-            if(dbHelper.contains(product!!)){
-                button_add.visibility = View.INVISIBLE
-                product_add_layout.visibility = View.VISIBLE
-
-            }else{
-                button_add.visibility = View.VISIBLE
-                product_add_layout.visibility = View.INVISIBLE
-            }
-
-        }
-
-        product_add_image.setOnClickListener {
-            product_count.text = dbHelper.add1(product!!).toString()
-        }
 
 
     }
@@ -102,6 +106,33 @@ class ProductDetailActivity : AppCompatActivity() {
 
         }
         return true
+    }
+
+    override fun onClick(view: View) {
+        when(view){
+            button_add -> {
+                product?.quantity = 1
+                dbHelper.addProduct(product!!)
+                updateUI()
+            }
+            product_add_sign -> {
+                product?.quantity = product!!.quantity +1
+                dbHelper.updateProductQuantity(product!!)
+                updateUI()
+
+            }
+            product_sub_sign -> {
+                product?.quantity = product!!.quantity - 1
+                if(product!!.quantity > 0 ){
+                    dbHelper.updateProductQuantity(product!!)
+                }else{
+                    dbHelper.deleteProduct(product!!._id!!)
+                }
+                updateUI()
+
+
+            }
+        }
     }
 
 }

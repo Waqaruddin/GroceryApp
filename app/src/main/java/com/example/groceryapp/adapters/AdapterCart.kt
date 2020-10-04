@@ -36,13 +36,21 @@ class AdapterCart(var mContext: Context, var mList: ArrayList<Product>) :
                 notifyItemRemoved(position)
             }
             itemView.button_add.setOnClickListener {
-                dbHelper.add1(product)
-                notifyItemChanged(position)
+                product.quantity = product.quantity +1
+                dbHelper.updateProductQuantity(product)
+               // notifyItemChanged(position)
                 restart()
             }
             itemView.button_dec.setOnClickListener {
+                product.quantity = product.quantity - 1
+                if(product.quantity ==  0 ){
+                    dbHelper.deleteProduct(product._id!!)
 
-                dbHelper.sub1(product)
+                }else{
+                    dbHelper.updateProductQuantity(product)
+
+                }
+               // dbHelper.sub1(product)
                 notifyDataSetChanged()
                 restart()
 

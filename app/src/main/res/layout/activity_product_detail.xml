@@ -65,7 +65,7 @@
         android:weightSum="3">
 
         <ImageView
-            android:id="@+id/product_add_image"
+            android:id="@+id/product_add_sign"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -81,7 +81,7 @@
             android:textSize="28sp" />
 
         <ImageView
-            android:id="@+id/product_sub_image"
+            android:id="@+id/product_sub_sign"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
